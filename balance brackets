@@ -1,0 +1,30 @@
+def is_balanced_brackets(input_string):
+    stack = []
+    opening_brackets = "([{"
+    closing_brackets = ")]}"
+    
+    for char in input_string:
+        if char in opening_brackets:
+            stack.append(char)
+        elif char in closing_brackets:
+            if not stack:
+                return False  # Unbalanced (no matching opening bracket)
+            top = stack.pop()
+            if opening_brackets.index(top) != closing_brackets.index(char):
+                return False  # Unbalanced (mismatched brackets)
+    
+    return len(stack) == 0  # True if the stack is empty
+
+# Sample Input
+sample_input1 = "( [ [ { } ] ] )"
+sample_input2 = "( [ [ { } ] ] ) )"
+
+if is_balanced_brackets(sample_input1):
+    print("The entered String has Balanced Brackets")
+else:
+    print("The entered String does not contain Balanced Brackets")
+
+if is_balanced_brackets(sample_input2):
+    print("The entered String has Balanced Brackets")
+else:
+    print("The entered String does not contain Balanced Brackets")
